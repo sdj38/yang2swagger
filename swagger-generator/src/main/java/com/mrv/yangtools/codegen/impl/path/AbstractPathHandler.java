@@ -88,7 +88,7 @@ public abstract class AbstractPathHandler implements PathHandler {
                     .description(description));
         }
         post.response(201, new Response().description("No response")); //no output body
-        swagger.path(operations + printer.path(), new Path().post(post));
+        swagger.path(operations + module.getName() + ":" + printer.path(), new Path().post(post));
     }
 
     protected abstract PathPrinter getPrinter(PathSegment pathCtx);
