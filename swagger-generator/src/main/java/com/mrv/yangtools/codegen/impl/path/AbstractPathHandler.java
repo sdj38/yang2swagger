@@ -51,10 +51,10 @@ public abstract class AbstractPathHandler implements PathHandler {
         ContainerSchemaNode input = rcp.getInput();
         ContainerSchemaNode output = rcp.getOutput();
         ContainerSchemaNode root = new RpcContainerSchemaNode(rcp);
-        
+
         input = input.getChildNodes().isEmpty() ? null : input;
         output = output.getChildNodes().isEmpty() ? null : output;
-    	
+
         PathPrinter printer = getPrinter(pathCtx);
 
         Operation post = defaultOperation(pathCtx);
@@ -81,13 +81,14 @@ public abstract class AbstractPathHandler implements PathHandler {
 
             RefProperty refProperty = new RefProperty();
             refProperty.set$ref(dataObjectBuilder.getDefinitionId(root));
-            
+
             dataObjectBuilder.addModel(root);
             post.response(200, new Response()
                     .schema(refProperty)
                     .description(description));
         }
         post.response(201, new Response().description("No response")); //no output body
+		// RPC call add module name as a prefix.
         swagger.path(operations + module.getName() + ":" + printer.path(), new Path().post(post));
     }
 
