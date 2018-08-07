@@ -32,7 +32,7 @@ public class PutOperationGenerator extends OperationGenerator {
     public Operation execute(DataSchemaNode node) {
         final Operation put = defaultOperation();
         final RefModel definition = new RefModel(getDefinitionId(node));
-        put.description("creates or updates " + getName(node));
+        put.description("creates or updates " + nameSplit(getName(node)));
         put.parameter(new BodyParameter()
                 .name(getName(node) + ".body-param")
                 .schema(definition)

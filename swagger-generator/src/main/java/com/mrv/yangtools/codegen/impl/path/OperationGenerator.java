@@ -63,4 +63,18 @@ public abstract class OperationGenerator<T extends SchemaNode & DataNodeContaine
         operation.setParameters(path.params());
         return operation;
     }
+	
+	protected String nameSplit(String name){
+		String[] parts = name.split("\\.");
+		String first = parts[parts.length-2];
+		first = first.substring(0,1).toUpperCase() + first.substring(1);
+		String last = parts[parts.length-1];
+		last = String.join("-",last.split("(?=\\p{Upper})"));
+		last = last.substring(0,1).toUpperCase() + last.substring(1);
+		
+		
+		String result = first + "/" + last;
+		
+		return result;	
+	}
 }

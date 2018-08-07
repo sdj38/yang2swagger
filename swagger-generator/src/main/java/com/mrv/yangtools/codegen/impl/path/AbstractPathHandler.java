@@ -96,6 +96,7 @@ public abstract class AbstractPathHandler implements PathHandler {
 
     private Operation defaultOperation(PathSegment pathCtx) {
         final Operation operation = new Operation();
+		operation.description("RPC " + pathCtx.getName());
         operation.response(400, new Response().description("Internal error"));
         operation.setParameters(pathCtx.params());
         return operation;
